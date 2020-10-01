@@ -1,0 +1,38 @@
+div.container {
+    height: 5rem;
+    width: 40rem; 
+    margin: 0 auto;
+}
+
+div.container label {
+    font-size: 17px;
+    margin-left: 2%;
+    color: whitesmoke;
+    font-family: 'Fira Sans', sans-serif;
+}
+
+div.container input {
+    width: 70%;
+    border-style: none;
+    border-radius: 4px;
+    height: 2rem;
+    border-color: whitesmoke;
+    font-family: 'Fira Sans', sans-serif;
+    text-align: center;
+}
+
+div.container input:focus {
+    outline: none;
+}
+
+div.container button {
+    color: whitesmoke;
+    background-color: transparent;
+    border-color: whitesmoke;
+    border-radius: 15px;
+    border-style: solid;
+    margin-left: 2%;
+    height: 2.6rem;
+    width: 15%;
+    font-family: 'Fira Sans', sans-serif;
+}
