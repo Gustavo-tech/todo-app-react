@@ -17,11 +17,14 @@ class App extends Component {
     }
 
     addTask = (task) => {
-        task.id = Math.random();
-        let tasks = [...this.state.tasks, task];
-        this.setState({
-            tasks
-        })
+
+        if (task.name !== "") {
+            task.id = this.state.tasks[this.state.tasks.length - 1].id + 1;
+            let tasks = [...this.state.tasks, task];
+            this.setState({
+                tasks
+            })
+        }
     }
 
     deleteTask = (id) => {
@@ -34,12 +37,17 @@ class App extends Component {
         })
     }
 
+    showIndex = () => {
+        console.log(this.state.tasks[this.state.tasks.length - 1].id);
+    }
+
     render() {
         return(
             <div>
                 <Header />
                 <Task tasks={this.state.tasks} deleteTask={this.deleteTask} />
                 <AddForm addTask={this.addTask} />
+                <button onClick={this.showIndex}></button>
             </div>
         )
     }
