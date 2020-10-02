@@ -3,12 +3,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Components
-import AddForm from './components/AddForm/AddForm';
+import App from './components/App/App';
 
 // Style
 import './global.css';
 
 ReactDOM.render(
-    <AddForm/>,
+    <App/>,
     document.getElementById('root')
 ); 

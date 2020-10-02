@@ -36,3 +36,12 @@ div.container button {
     width: 15%;
     font-family: 'Fira Sans', sans-serif;
 }
+
+div.container button:focus {
+    outline: none;
+}
+
+div.container button:hover {
+    background-color: #1287ca;
+    transition: background-color 0.5s;
+}

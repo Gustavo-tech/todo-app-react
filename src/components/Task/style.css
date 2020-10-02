@@ -1,0 +1,25 @@
+div.task-info {
+    height: 2px;
+    margin-bottom: 4%;
+}
+
+h2 {
+    color: whitesmoke;
+    margin-left: 30%;
+    margin-right: 30%;
+    text-align: center;
+    border: solid 2px;
+    display: block;
+}
+
+h2 button {
+    margin-left: 3%;
+    margin-top: 0.3%;
+    margin-right: 3%;
+    float: right;
+}
+
+p {
+    text-align: center;
+    color: whitesmoke;
+}
