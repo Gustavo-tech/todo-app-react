@@ -1,6 +1,6 @@
 div.task-info {
     height: 2px;
-    margin-bottom: 4%;
+    margin-bottom: 6%;
 }
 
 h2 {
@@ -10,6 +10,10 @@ h2 {
     text-align: center;
     border: solid 2px;
     display: block;
+}
+
+div.task-info:last-child {
+    margin-bottom: 7%;
 }
 
 h2 button {

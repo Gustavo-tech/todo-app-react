@@ -16,17 +16,30 @@ class App extends Component {
         ]
     }
 
-    showState = () => {
-        console.log(this.state.tasks);
+    addTask = (task) => {
+        task.id = Math.random();
+        let tasks = [...this.state.tasks, task];
+        this.setState({
+            tasks
+        })
+    }
+
+    deleteTask = (id) => {
+        const tasks = this.state.tasks.filter(task => {
+            return task.id !== id;
+        })
+
+        this.setState({
+            tasks
+        })
     }
 
     render() {
         return(
             <div>
-                <Header/>
-                <Task tasks={this.state.tasks}/>
-                <AddForm/>
-                <button onClick={this.showState}>Click me</button>
+                <Header />
+                <Task tasks={this.state.tasks} deleteTask={this.deleteTask} />
+                <AddForm addTask={this.addTask} />
             </div>
         )
     }
