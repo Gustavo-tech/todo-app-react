@@ -4,7 +4,11 @@ import React, { Component } from 'react';
 // Components
 import Header from '../Header/Header';
 import AddForm from '../AddForm/AddForm';
+import TaskContainer from '../TaskContainer/TaskContainer';
 import Task from '../Task/Task';
+
+// Styles
+import './style.css';
 
 class App extends Component {
     
@@ -37,17 +41,14 @@ class App extends Component {
         })
     }
 
-    showIndex = () => {
-        console.log(this.state.tasks[this.state.tasks.length - 1].id);
-    }
-
     render() {
         return(
-            <div>
+            <div className="app">
                 <Header />
-                <Task tasks={this.state.tasks} deleteTask={this.deleteTask} />
+                <TaskContainer>
+                    <Task tasks={this.state.tasks} deleteTask={this.deleteTask} />
+                </TaskContainer>
                 <AddForm addTask={this.addTask} />
-                <button onClick={this.showIndex}></button>
             </div>
         )
     }

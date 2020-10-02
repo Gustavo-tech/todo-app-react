@@ -1,8 +1,7 @@
 div.container {
-    height: 5rem;
-    width: 40rem; 
-    margin-left: 30%;
-    margin-right: 30%;
+    margin: 0 auto;
+    max-width: 60%;
+    height: auto;
 }
 
 div.container label {

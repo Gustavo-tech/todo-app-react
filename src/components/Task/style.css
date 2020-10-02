@@ -1,28 +1,19 @@
-div.task-info {
-    height: 2px;
-    margin-top: 9%;
-    margin-bottom: 6%;
-}
-
 h2 {
     color: whitesmoke;
-    margin-left: 30%;
-    margin-right: 30%;
     text-align: center;
     border: solid 2px;
 }
 
 div.task-info:last-child {
-    margin-bottom: 7%;
+    margin-bottom: 2%;
 }
 
 h2 button {
-    margin-left: 3%;
-    margin-top: 0.9%;
-    margin-right: 3%;
-    float: right;
     background-color: transparent;
     border: 1px solid whitesmoke;
+    float: right;
+    margin-right: 0.3%;
+    margin-top: 0.2%;
 }
 
 p {

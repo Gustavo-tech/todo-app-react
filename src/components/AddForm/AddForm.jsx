@@ -31,7 +31,7 @@ class AddForm extends Component {
                 <form onSubmit={this.handleSubmit}>
 
                     <input type="text" className="task-input" placeholder="Insert A New Task Here" 
-                    onChange={this.handleChange} value={this.state.content} />
+                    onChange={this.handleChange} value={this.state.content} maxLength="30" />
                     
                     <button>ADD</button>
                 </form>

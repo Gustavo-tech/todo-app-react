@@ -9,15 +9,18 @@ import Done from '../../assets/icons/check.png';
 
 const Todos = ({tasks, deleteTask}) => {
 
-  const todoList = tasks.length ? (
+  const todoList = tasks.length ? 
+  (
     tasks.map(task => {
       return (
-        <div className="task-info" key={task.id}>
-          <h2> {task.name} <button onClick={() => {deleteTask(task.id)}}> <img src={Done} alt="done"/> </button> </h2> 
-        </div>
+        <h2 key={task.id}> {task.name} <button onClick={() => {deleteTask(task.id)}}> <img src={Done} alt="done"/> </button> </h2> 
       )
     })
-  ) : (
+  ) 
+  
+  : 
+  
+  (
     <p>You have no task left, yay!</p>
   );
 
