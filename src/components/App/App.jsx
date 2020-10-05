@@ -14,21 +14,41 @@ class App extends Component {
     
     state = {
         tasks: [
-            { id: 1, name: 'Remove the trash' },
-            { id: 2, name: 'Do the commit' },
-            { id: 3, name: 'Do my homework' }
         ]
+    }
+
+    validateTask(task) {
+        if ((task.name) !== "" && (this.state.tasks.length <= 7)) {
+            return true;
+        }
+
+        else {
+            return false;
+        }
     }
 
     addTask = (task) => {
 
-        if (task.name !== "") {
-            task.id = this.state.tasks[this.state.tasks.length - 1].id + 1;
-            let tasks = [...this.state.tasks, task];
-            this.setState({
-                tasks
-            })
+        const valid = this.validateTask(task);
+
+        if (valid == true) {
+            if (this.state.tasks.length == 0) {
+                task.id = 1;
+                let tasks = [task];
+                this.setState({
+                    tasks
+                })
+            }
+
+            else {
+                task.id = this.state.tasks[this.state.tasks.length - 1].id + 1;
+                let tasks = [...this.state.tasks, task];
+                this.setState({
+                    tasks
+                })
+            }
         }
+        
     }
 
     deleteTask = (id) => {
@@ -39,7 +59,7 @@ class App extends Component {
         this.setState({
             tasks
         })
-    }
+    };
 
     render() {
         return(

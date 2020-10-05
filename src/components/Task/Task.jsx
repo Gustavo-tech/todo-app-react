@@ -21,7 +21,7 @@ const Todos = ({tasks, deleteTask}) => {
   : 
   
   (
-    <p>You have no task left, yay!</p>
+    <p>Few free to create a new task!</p>
   );
 
   return (
