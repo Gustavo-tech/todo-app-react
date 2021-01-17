@@ -2,6 +2,12 @@ thead.table-head {
     color: var(--purple);
 }
 
-a.link-actions {
+span.link-actions {
     color: var(--purple);
+    text-decoration: underline;
+}
+
+span.link-actions:hover {
+    color: rgb(236, 6, 236);
+    cursor: pointer;
 }

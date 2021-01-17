@@ -25,7 +25,7 @@ class Home extends Component {
         })
     }
 
-    handleDeleteTask = (id) => {
+    handleDelete = (id) => {
         let tasks = this.state.tasks.filter(task => {
             return task.id !== id;
         })
@@ -35,12 +35,20 @@ class Home extends Component {
         })
     }
 
+    handleEdit = (id) => {
+        let task = this.state.tasks.find(task => {
+            return task.id === id;
+        });
+        document.getElementById('task-name').value = task.name;
+        document.getElementById('priority').value = task.priority;
+    }
+
     render() {
         return(
             <div>
                 <img className="to-do-icon" src={TodoImage} alt="to-do-icon"/>
                 <TaskForm handleNewTask={this.handleNewTask}/>
-                <TaskTable handleDeleteTask={this.handleDeleteTask} tasks={this.state.tasks}/>
+                <TaskTable handleEdit={this.handleEdit} handleDeleteTask={this.handleDelete} tasks={this.state.tasks}/>
             </div>
         )
     }
