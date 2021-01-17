@@ -35,14 +35,6 @@ class Home extends Component {
         })
     }
 
-    handleEdit = (id) => {
-        let task = this.state.tasks.find(task => {
-            return task.id === id;
-        });
-        document.getElementById('task-name').value = task.name;
-        document.getElementById('priority').value = task.priority;
-    }
-
     render() {
         return(
             <div>
