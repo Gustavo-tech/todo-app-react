@@ -26,7 +26,17 @@ const TaskTable = ({tasks}) => {
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    {
+                        tasks.map(task => {
+                            return(
+                                <tr>
+                                    <td>{task.name}</td>
+                                    <td>{task.priority}</td>
+                                    <td><a href="/">Delete</a> | <a href="/">Edit</a></td>
+                                </tr>
+                            )
+                        })
+                    }
                 </tbody>
             </Table>
         </Container>

@@ -1,5 +1,10 @@
+:root {
+    --black:  rgb(43, 41, 41);
+    --purple: #9147ff;
+}
+
 div.app {
-    background-color: rgb(43, 41, 41);
+    background-color: var(--black);
     width: 100vw;
     height: 100vh;
 }

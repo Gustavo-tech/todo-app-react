@@ -1,5 +1,5 @@
 // React
-import React, { Component } from 'react';
+import React from 'react';
 
 // Components
 import Home from '../Home/Home';
