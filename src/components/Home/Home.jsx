@@ -19,6 +19,7 @@ class Home extends Component {
     }
 
     handleNewTask = (task) => {
+        task.id = this.state.tasks.length + 1;
         this.setState({
             tasks: [...this.state.tasks, task]
         })
