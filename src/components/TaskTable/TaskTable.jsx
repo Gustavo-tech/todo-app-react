@@ -8,7 +8,12 @@ import Container from 'react-bootstrap/Container';
 // Styles
 import './style.css';
 
-const TaskTable = ({tasks}) => {
+const handleAction = (event) => {
+    event.prevendDefault();
+    
+}
+
+const TaskTable = ({tasks, handleDeleteTask}) => {
     return(
         <Container>
                 <Table striped bordered hover variant="dark">
@@ -32,7 +37,7 @@ const TaskTable = ({tasks}) => {
                                 <tr key={task.id}>
                                     <td>{task.name}</td>
                                     <td>{task.priority}</td>
-                                    <td><a href="/">Delete</a> | <a href="/">Edit</a></td>
+                                    <td><a onClick={handleAction} className="link-actions">Delete</a> | <a href="/" className="link-actions">Edit</a></td>
                                 </tr>
                             )
                         })

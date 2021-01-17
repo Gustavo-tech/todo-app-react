@@ -25,12 +25,22 @@ class Home extends Component {
         })
     }
 
+    handleDeleteTask = (id) => {
+        let tasks = this.state.tasks.filter(task => {
+            return task.id !== id;
+        })
+
+        this.setState({
+            tasks: tasks
+        })
+    }
+
     render() {
         return(
             <div>
                 <img className="to-do-icon" src={TodoImage} alt="to-do-icon"/>
                 <TaskForm handleNewTask={this.handleNewTask}/>
-                <TaskTable tasks={this.state.tasks}/>
+                <TaskTable handleDeleteTask={this.handleDeleteTask} tasks={this.state.tasks}/>
             </div>
         )
     }

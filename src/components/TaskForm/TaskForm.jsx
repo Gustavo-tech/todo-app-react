@@ -46,7 +46,7 @@ class TaskForm extends Component {
                     <Row>
                         <Col sm={3} lg={8}>
                             <Form.Group>
-                                <Form.Control onChange={this.onNameChange} id="task-name" type="text" placeholder="Enter a new task" />
+                                <Form.Control onChange={this.onNameChange} id="task-name" type="text" placeholder="Enter a new task" required />
                             </Form.Group>
                         </Col>
                         <Col sm={3} lg={3}>
@@ -55,7 +55,9 @@ class TaskForm extends Component {
                                 as="select"
                                 className="mr-sm-2"
                                 id="priority"
-                                custom>
+                                custom 
+                                required >
+                                <option>Please enter with a priority</option>
                                 <option value="Low">Low</option>
                                 <option value="Medium">Medium</option>
                                 <option value="High">High</option>

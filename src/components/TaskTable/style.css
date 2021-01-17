@@ -1,3 +1,7 @@
 thead.table-head {
     color: var(--purple);
 }
+
+a.link-actions {
+    color: var(--purple);
+}
