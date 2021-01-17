@@ -10,43 +10,58 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown';
 
 class TaskForm extends Component {
     state = {
-        task: {
-            name: '',
-            priority: ''
-        }
+        name: '',
+        priority: 'low'
     }
 
-    handleChange = () => {
+    onNameChange = (event) => {
+        this.setState({
+            name: event.target.value
+        })
+    }
 
+    onPriorityChange = (event) => {
+        this.setState({
+            priority: event.target.value
+        })
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
+        var newTask = {
+            name: this.state.name,
+            priority: this.state.priority,
+        }
+
+        this.props.handleNewTask(newTask);
     }
 
     render() {
         return (
             <Container style={{marginBottom: '2%'}}>
-                <Form>
+                <Form onSubmit={this.handleSubmit}>
                     <Row>
-                        <Col lg={8}>
-                            <Form.Group controlId="formBasicEmail">
-                                <Form.Control type="email" placeholder="Enter a new task" />
+                        <Col sm={3} lg={8}>
+                            <Form.Group>
+                                <Form.Control onChange={this.onNameChange} id="task-name" type="text" placeholder="Enter a new task" />
                             </Form.Group>
                         </Col>
-                        <Col lg={2}>
-                            <DropdownButton id="dropdown-basic-button" title="Dropdown button">
-                                <Dropdown.Item href="#/action-1">Low</Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">Medium</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">High</Dropdown.Item>
-                            </DropdownButton>
+                        <Col sm={3} lg={3}>
+                            <Form.Control
+                                onChange={this.onPriorityChange}
+                                as="select"
+                                className="mr-sm-2"
+                                id="priority"
+                                custom>
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </Form.Control>
                         </Col>
-                        <Col lg={2}>
+                        <Col sm={2} lg={1}>
                             <Button type="submit">Add</Button>
                         </Col>
                     </Row>

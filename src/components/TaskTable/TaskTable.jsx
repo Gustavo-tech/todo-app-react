@@ -29,7 +29,7 @@ const TaskTable = ({tasks}) => {
                     {
                         tasks.map(task => {
                             return(
-                                <tr>
+                                <tr key={task.id}>
                                     <td>{task.name}</td>
                                     <td>{task.priority}</td>
                                     <td><a href="/">Delete</a> | <a href="/">Edit</a></td>
