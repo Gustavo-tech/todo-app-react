@@ -11,7 +11,7 @@ import './style.css';
 const TaskTable = ({tasks, handleDeleteTask}) => {
     return(
         <Container>
-                <Table striped bordered hover variant="dark">
+                <Table striped bordered hover variant="dark" className="to-do-table">
                 <thead className="table-head">
                     <tr>
                         <th>
