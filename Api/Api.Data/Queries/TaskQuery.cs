@@ -21,8 +21,11 @@ namespace Api.Data.Queries
         {
             using (SqlConnection connection = new SqlConnection(DatabaseConnectionFactory.GetToDoConnection()))
             {
-                string query = "INSERT INTO Todos VALUES (@TaskName, @Priority)";
-                connection.Query<Todo>(query, new { TaskName = todo.TaskName, Priority = todo.Priority });
+                string getLastId = "SELECT Id FROM Todos ORDER BY Id";
+                int id = connection.ExecuteScalar<int>(getLastId) + 1;
+
+                string query = "INSERT INTO Todos VALUES (@Id, @TaskName, @Priority)";
+                connection.Query<Todo>(query, new {Id = id, TaskName = todo.TaskName, Priority = todo.Priority });
             }
         }
     }

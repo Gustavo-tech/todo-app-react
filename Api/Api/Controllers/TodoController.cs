@@ -16,9 +16,9 @@ namespace Api.Controllers
             {
                 return Ok(TaskQuery.GetTodos());
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                return Problem("An error happened with our server");
+                return Problem(exception.Message);
             }
         }
 
@@ -31,9 +31,9 @@ namespace Api.Controllers
                 TaskQuery.SaveTodo(todo);
                 return Ok("Task saved succesfully");
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                return Problem("An error happened with our server");
+                return Problem(exception.Message);
             }
         }
     }
