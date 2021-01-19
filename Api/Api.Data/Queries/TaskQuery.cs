@@ -12,7 +12,7 @@ namespace Api.Data.Queries
         {
             using(SqlConnection connection = new SqlConnection(DatabaseConnectionFactory.GetToDoConnection()))
             {
-                string query = "SELECT * FROM Todos";
+                string query = "SELECT * FROM Todos ORDER BY Priority ASC";
                 return connection.Query<Todo>(query).ToList();
             }
         }
