@@ -7,5 +7,11 @@ namespace Api.Data.Models
         public int Id { get; set; }
         public string TaskName { get; set; }
         public Priority Priority { get; set; }
+
+        public Todo(string taskName, Priority priority)
+        {
+            TaskName = taskName;
+            Priority = priority;
+        }
     }
 }
