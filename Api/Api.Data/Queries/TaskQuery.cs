@@ -16,5 +16,14 @@ namespace Api.Data.Queries
                 return connection.Query<Todo>(query).ToList();
             }
         }
+
+        public static void SaveTodo(Todo todo)
+        {
+            using (SqlConnection connection = new SqlConnection(DatabaseConnectionFactory.GetToDoConnection()))
+            {
+                string query = "INSERT INTO Todos VALUES (@TaskName, @Priority)";
+                connection.Query<Todo>(query, new { TaskName = todo.TaskName, Priority = todo.Priority });
+            }
+        }
     }
 }

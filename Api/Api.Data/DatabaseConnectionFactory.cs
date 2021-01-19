@@ -4,7 +4,7 @@
     {
         public static string GetToDoConnection()
         {
-            return "";
+            return "Data Source=DESKTOP-CLEANDE;Initial Catalog=todos;Integrated Security=True";
         }
     }
 }
