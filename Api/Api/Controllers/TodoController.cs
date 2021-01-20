@@ -1,7 +1,10 @@
-﻿using Api.Data.Models;
+﻿using Api.Converters;
+using Api.Data.Models;
 using Api.Data.Queries;
+using Api.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 
 namespace Api.Controllers
 {
@@ -14,7 +17,15 @@ namespace Api.Controllers
         {
             try
             {
-                return Ok(TaskQuery.GetTodos());
+                List<Todo> todos = TaskQuery.GetTodos();
+                List<TodoViewModel> todoViews = new List<TodoViewModel>();
+                foreach (Todo todo in todos)
+                {
+                    TodoViewModel todoViewModel = new TodoViewModel(todo.Id, todo.TaskName, TaskPropertiesConverter.ConvertPriorityToString(todo));
+                    todoViews.Add(todoViewModel);
+                }
+
+                return Ok(todoViews);
             }
             catch (Exception exception)
             {
