@@ -30,7 +30,7 @@ const TaskTable = ({tasks, handleDeleteTask}) => {
                         tasks.map(task => {
                             return(
                                 <tr key={task.id}>
-                                    <td>{task.name}</td>
+                                    <td>{task.taskName}</td>
                                     <td>{task.priority}</td>
                                     <td><span onClick={() => handleDeleteTask(task.id)} className="link-actions">Mark as done</span></td>
                                 </tr>
