@@ -1,6 +1,9 @@
 // React
 import React, { Component } from "react";
 
+// axios
+import axios from 'axios';
+
 // Components
 import TaskTable from '../../components/TaskTable/TaskTable';
 import TaskForm from '../../components/TaskForm/TaskForm';
@@ -16,8 +19,25 @@ class Home extends Component {
         tasks: []
     }
 
+    componentDidMount() {
+        axios.get('https://localhost:5001/api/todo/todos')
+        .then(response => {
+            console.log(response);
+            if (response.status === 200) {
+                this.setState({
+                    tasks: response.data
+                })
+            }
+            else
+            {
+                alert(response.data);
+            }
+        })
+    }
+
     handleNewTask = (task) => {
         task.id = this.state.tasks.length + 1;
+
         this.setState({
             tasks: [...this.state.tasks, task]
         })
