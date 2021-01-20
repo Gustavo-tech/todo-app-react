@@ -13,11 +13,7 @@ import './style.css';
 
 class Home extends Component {
     state = {
-        tasks: [
-            { id: 1, name: "Commit my changes", priority: "High" },
-            { id: 2, name: "Create a nice back end", priority: "Medium" },
-            { id: 3, name: "Create a beautiful front end", priority: "Low" },
-        ]
+        tasks: []
     }
 
     handleNewTask = (task) => {

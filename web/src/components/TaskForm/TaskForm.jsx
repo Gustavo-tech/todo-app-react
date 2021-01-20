@@ -58,9 +58,9 @@ class TaskForm extends Component {
                                 custom 
                                 required >
                                 <option>Please enter with a priority</option>
-                                <option value="Low">Low</option>
-                                <option value="Medium">Medium</option>
-                                <option value="High">High</option>
+                                <option value="2">Low</option>
+                                <option value="1">Medium</option>
+                                <option value="0">High</option>
                             </Form.Control>
                         </Col>
                         <Col sm={2} lg={1}>
