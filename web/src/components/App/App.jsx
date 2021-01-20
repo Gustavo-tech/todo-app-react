@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Components
-import Home from '../Home/Home';
+import Home from '../../pages/Home/Home';
 
 // Styles
 import './style.css';

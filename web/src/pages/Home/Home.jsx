@@ -1,7 +1,9 @@
-// Components
+// React
 import React, { Component } from "react";
-import TaskTable from '../TaskTable/TaskTable';
-import TaskForm from '../TaskForm/TaskForm';
+
+// Components
+import TaskTable from '../../components/TaskTable/TaskTable';
+import TaskForm from '../../components/TaskForm/TaskForm';
 
 // Images
 import TodoImage from '../../assets/to-do.svg';
