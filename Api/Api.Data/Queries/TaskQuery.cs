@@ -21,7 +21,7 @@ namespace Api.Data.Queries
         {
             using (SqlConnection connection = new SqlConnection(DatabaseConnectionFactory.GetToDoConnection()))
             {
-                string getLastId = "SELECT Id FROM Todos ORDER BY Id";
+                string getLastId = "SELECT Id FROM Todos ORDER BY Id DESC";
                 int id = connection.ExecuteScalar<int>(getLastId) + 1;
 
                 string query = "INSERT INTO Todos VALUES (@Id, @TaskName, @Priority)";

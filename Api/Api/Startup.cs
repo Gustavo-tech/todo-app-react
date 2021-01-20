@@ -34,7 +34,7 @@ namespace Api
             {
                 options.AllowAnyOrigin();
                 options.AllowAnyMethod();
-                options.AllowAnyMethod();
+                options.AllowAnyHeader();
             });
             app.UseEndpoints(endpoints =>
             {

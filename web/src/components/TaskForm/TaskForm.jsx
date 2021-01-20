@@ -13,7 +13,8 @@ import Col from 'react-bootstrap/Col';
 
 class TaskForm extends Component {
     state = {
-        name: '',
+        id: 0,
+        taskName: '',
         priority: 'low'
     }
 
@@ -32,11 +33,25 @@ class TaskForm extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         var newTask = {
-            name: this.state.name,
-            priority: this.state.priority,
+            id: this.props.tasks.length + 1,
+            taskName: this.state.name,
+            priority: this.convertPriorityToNumber(this.state.priority)
         }
 
         this.props.handleNewTask(newTask);
+    }
+
+    convertPriorityToNumber(priority) {
+        switch (priority) {
+            case "High":
+                return 0;
+            case "Medium":
+                return 1;
+            case "Low":
+                return 2;
+            default:
+                return 2;
+        }
     }
 
     render() {
@@ -58,9 +73,9 @@ class TaskForm extends Component {
                                 custom 
                                 required >
                                 <option>Please enter with a priority</option>
-                                <option value="2">Low</option>
-                                <option value="1">Medium</option>
-                                <option value="0">High</option>
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
                             </Form.Control>
                         </Col>
                         <Col sm={2} lg={1}>

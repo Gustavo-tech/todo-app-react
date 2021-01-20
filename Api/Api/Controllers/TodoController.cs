@@ -37,15 +37,17 @@ namespace Api.Controllers
         [Route("add")]
         public IActionResult InsertTodo([FromBody] Todo todo)
         {
-            try
-            {
-                TaskQuery.SaveTodo(todo);
-                return Ok("Task saved succesfully");
-            }
-            catch (Exception exception)
-            {
-                return Problem(exception.Message);
-            }
+            TaskQuery.SaveTodo(todo);
+            return Ok("Task saved succesfully");
+            //try
+            //{
+            //    TaskQuery.SaveTodo(todo);
+            //    return Ok("Task saved succesfully");
+            //}
+            //catch (Exception exception)
+            //{
+            //    return Problem(exception.Message);
+            //}
         }
     }
 }

@@ -22,7 +22,6 @@ class Home extends Component {
     componentDidMount() {
         axios.get('https://localhost:5001/api/todo/todos')
         .then(response => {
-            console.log(response);
             if (response.status === 200) {
                 this.setState({
                     tasks: response.data
@@ -36,8 +35,18 @@ class Home extends Component {
     }
 
     handleNewTask = (task) => {
-        task.id = this.state.tasks.length + 1;
+        axios.post('https://localhost:5001/api/todo/add', JSON.stringify(task), {
+            data: JSON.stringify(task),
+            headers: {
+                'Content-type': 'application/json'
+            },
+            method: 'POST'
+        })
+        .catch(error => {
+            console.log(error);
+        })
 
+        task.priority = this.convertPriorityToString(task.priority);
         this.setState({
             tasks: [...this.state.tasks, task]
         })
@@ -53,11 +62,24 @@ class Home extends Component {
         })
     }
 
+    convertPriorityToString(priority) {
+        switch (priority) {
+            case 0:
+                return "High";
+            case 1:
+                return "Medium";
+            case 2:
+                return "Low";
+            default:
+                return "Low";
+        }
+    }
+
     render() {
         return(
             <div>
                 <img className="to-do-icon" src={TodoImage} alt="to-do-icon"/>
-                <TaskForm handleNewTask={this.handleNewTask}/>
+                <TaskForm tasks={this.state.tasks} handleNewTask={this.handleNewTask}/>
                 <TaskTable handleEdit={this.handleEdit} handleDeleteTask={this.handleDelete} tasks={this.state.tasks}/>
             </div>
         )
