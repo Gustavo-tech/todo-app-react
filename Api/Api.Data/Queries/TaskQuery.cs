@@ -28,5 +28,23 @@ namespace Api.Data.Queries
                 connection.Query<Todo>(query, new {Id = id, TaskName = todo.TaskName, Priority = todo.Priority });
             }
         }
+
+        public static void EditTodo(Todo todo)
+        {
+            using (SqlConnection connection = new SqlConnection(DatabaseConnectionFactory.GetToDoConnection()))
+            {
+                string query = "UPDATE Todos SET TaskName = @TaskName, Priority = @Priority WHERE Id = @Id";
+                connection.Query<Todo>(query, new { Id = todo.Id, TaskName = todo.TaskName, Priority = todo.Priority });
+            }
+        }
+
+        public static void DeleteTodo(Todo todo)
+        {
+            using (SqlConnection connection = new SqlConnection(DatabaseConnectionFactory.GetToDoConnection()))
+            {
+                string query = "DELETE FROM Todos WHERE Id = @Id";
+                connection.Query<Todo>(query, new { Id = todo.Id });
+            }
+        }
     }
 }

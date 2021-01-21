@@ -37,17 +37,45 @@ namespace Api.Controllers
         [Route("add")]
         public IActionResult InsertTodo([FromBody] Todo todo)
         {
-            TaskQuery.SaveTodo(todo);
-            return Ok("Task saved succesfully");
-            //try
-            //{
-            //    TaskQuery.SaveTodo(todo);
-            //    return Ok("Task saved succesfully");
-            //}
-            //catch (Exception exception)
-            //{
-            //    return Problem(exception.Message);
-            //}
+            try
+            {
+                TaskQuery.SaveTodo(todo);
+                return Ok("Task saved succesfully");
+            }
+            catch (Exception exception)
+            {
+                return Problem(exception.Message);
+            }
+        }
+
+        [HttpPut]
+        [Route("edit")]
+        public IActionResult EditTodo([FromBody] Todo todo)
+        {
+            try
+            {
+                TaskQuery.EditTodo(todo);
+                return Ok("Task edited successfully");
+            }
+            catch (Exception exception)
+            {
+                return Problem(exception.Message);
+            }
+        }
+
+        [HttpDelete]
+        [Route("delete")]
+        public IActionResult DeleteTodo([FromBody] Todo todo)
+        {
+            try
+            {
+                TaskQuery.DeleteTodo(todo);
+                return Ok("Task deleted successfully");
+            }
+            catch (Exception exception)
+            {
+                return Problem(exception.Message);
+            }
         }
     }
 }
