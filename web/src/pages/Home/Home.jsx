@@ -52,13 +52,31 @@ class Home extends Component {
         })
     }
 
-    handleDelete = (id) => {
+    handleEdit = (task) => {
+        
+    }
+
+    handleDelete = (taskReceived) => {
         let tasks = this.state.tasks.filter(task => {
-            return task.id !== id;
+            return task !== taskReceived;
         })
 
-        this.setState({
-            tasks: tasks
+        axios.delete('https://localhost:5001/api/todo/delete', {
+            data: JSON.stringify(taskReceived),
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.status === 200) {
+                this.setState({
+                    tasks: tasks
+                })
+            }
+        })
+        .catch(error => {
+            alert(error);
         })
     }
 

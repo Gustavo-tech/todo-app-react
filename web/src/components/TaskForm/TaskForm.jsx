@@ -33,12 +33,24 @@ class TaskForm extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         var newTask = {
-            id: this.props.tasks.length + 1,
+            id: this.getLastId(this.props.tasks),
             taskName: this.state.name,
             priority: this.convertPriorityToNumber(this.state.priority)
         }
 
         this.props.handleNewTask(newTask);
+    }
+
+    getLastId(tasks) {
+        var maxId = 0;
+
+        tasks.forEach(task => {
+            if (task.id > maxId) {
+                maxId = task.id;
+            }
+        })
+
+        return maxId;
     }
 
     convertPriorityToNumber(priority) {

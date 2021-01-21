@@ -32,7 +32,7 @@ const TaskTable = ({tasks, handleDeleteTask}) => {
                                 <tr key={task.id}>
                                     <td>{task.taskName}</td>
                                     <td>{task.priority}</td>
-                                    <td><span onClick={() => handleDeleteTask(task.id)} className="link-actions">Mark as done</span></td>
+                                    <td><span onClick={() => handleDeleteTask(task)} className="link-actions">Mark as done</span></td>
                                 </tr>
                             )
                         })
