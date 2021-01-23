@@ -18,6 +18,12 @@ class TaskForm extends Component {
         priority: 'low'
     }
 
+    componentDidMount() {
+        this.setState({
+            id: this.getLastId(this.props.tasks) + 1
+        })
+    }
+
     onNameChange = (event) => {
         this.setState({
             name: event.target.value
@@ -32,13 +38,29 @@ class TaskForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        var newTask = {
-            id: this.getLastId(this.props.tasks),
-            taskName: this.state.name,
-            priority: this.convertPriorityToNumber(this.state.priority)
-        }
 
-        this.props.handleNewTask(newTask);
+        if (document.getElementById('submit-button').innerHTML === 'Add') {
+            let newTask = {
+                id: this.state.id,
+                taskName: this.state.name,
+                priority: this.convertPriorityToNumber(this.state.priority)
+            }
+
+            this.setState({
+                id: this.state.id + 1,
+                taskName: '',
+                priority: 'low'
+            })
+
+            document.getElementById('task-name').value = '';
+            document.getElementById('priority').value = 'Low';
+    
+            this.props.handleNewTask(newTask);
+        }
+        else {
+
+        }
+        
     }
 
     getLastId(tasks) {
@@ -71,12 +93,17 @@ class TaskForm extends Component {
             <Container style={{marginBottom: '2%'}}>
                 <Form onSubmit={this.handleSubmit}>
                     <Row>
+                    <Col sm={3} lg={1}>
+                            <Form.Group>
+                                <Form.Control id="task-id" type="number" value={this.state.id} disabled />
+                            </Form.Group>
+                        </Col>
                         <Col sm={3} lg={8}>
                             <Form.Group>
                                 <Form.Control onChange={this.onNameChange} id="task-name" type="text" placeholder="Enter a new task" required />
                             </Form.Group>
                         </Col>
-                        <Col sm={3} lg={3}>
+                        <Col sm={3} lg={2}>
                             <Form.Control
                                 onChange={this.onPriorityChange}
                                 as="select"
@@ -84,14 +111,13 @@ class TaskForm extends Component {
                                 id="priority"
                                 custom 
                                 required >
-                                <option>Please enter with a priority</option>
                                 <option value="Low">Low</option>
                                 <option value="Medium">Medium</option>
                                 <option value="High">High</option>
                             </Form.Control>
                         </Col>
                         <Col sm={2} lg={1}>
-                            <Button type="submit">Add</Button>
+                            <Button id="submit-button" type="submit">Add</Button>
                         </Col>
                     </Row>
                 </Form>

@@ -53,7 +53,13 @@ class Home extends Component {
     }
 
     handleEdit = (task) => {
-        
+        axios.put('https://localhost:5001/api/todo/edit', JSON.stringify(task), {
+            data: JSON.stringify(task),
+            headers: {
+                'Content-type': 'application/json'
+            },
+            method: 'PUT',
+        })
     }
 
     handleDelete = (taskReceived) => {
@@ -97,8 +103,8 @@ class Home extends Component {
         return(
             <div>
                 <img className="to-do-icon" src={TodoImage} alt="to-do-icon"/>
-                <TaskForm tasks={this.state.tasks} handleNewTask={this.handleNewTask}/>
-                <TaskTable handleEdit={this.handleEdit} handleDeleteTask={this.handleDelete} tasks={this.state.tasks}/>
+                <TaskForm tasks={this.state.tasks} handleNewTask={this.handleNewTask} handleEditTask={this.handleEdit}/>
+                <TaskTable handleDeleteTask={this.handleDelete} tasks={this.state.tasks}/>
             </div>
         )
     }
