@@ -63,6 +63,19 @@ class TaskForm extends Component {
             },
             method: 'PUT'
         })
+
+        let updatedTasks = this.state.tasks;
+
+        updatedTasks.forEach(taskInState => {
+            if (taskInState.id ===  task.id) {
+                taskInState.taskName = task.taskName;
+                taskInState.priority = this.convertPriorityToString(task.priority);
+            }
+        })
+
+        this.setState({
+            tasks: updatedTasks
+        })
     }
 
     deleteTask = (taskReceived) => {
@@ -137,6 +150,15 @@ class TaskForm extends Component {
         return maxId;
     }
 
+    setEditProps = (task) => {
+        this.setState({
+            id: task.id,
+            taskName: task.taskName,
+            priority: task.priority,
+            action: 'Edit'
+        })
+    }
+
     convertPriorityToNumber(priority) {
         switch (priority) {
             case "High":
@@ -148,15 +170,6 @@ class TaskForm extends Component {
             default:
                 return 2;
         }
-    }
-
-    setEditProps = (task) => {
-        this.setState({
-            id: task.id,
-            taskName: task.taskName,
-            priority: task.priority,
-            action: 'Edit'
-        })
     }
 
     convertPriorityToString(priority) {
