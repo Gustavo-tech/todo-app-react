@@ -8,13 +8,7 @@ import Container from 'react-bootstrap/Container';
 // Styles
 import './style.css';
 
-function setEditProperties(task) {
-    document.getElementById('task-name').value = task.taskName;
-    document.getElementById('priority').value = task.priority;
-    document.getElementById('submit-button').innerHTML = 'Edit';
-}
-
-const TaskTable = ({tasks, handleDeleteTask}) => {
+const TaskTable = ({tasks, handleDeleteTask, handleEditTask}) => {
     return(
         <Container>
                 <Table striped bordered hover variant="dark" className="to-do-table">
@@ -34,7 +28,7 @@ const TaskTable = ({tasks, handleDeleteTask}) => {
                                     <td>{task.id}</td>
                                     <td>{task.taskName}</td>
                                     <td>{task.priority}</td>
-                                    <td><span onClick={() => handleDeleteTask(task)} className="link-actions">Delete</span> | <span onClick={() => setEditProperties(task)} className="link-actions">Edit</span></td>
+                                    <td><span onClick={() => handleDeleteTask(task)} className="link-actions">Mark as done</span> | <span onClick={() => handleEditTask(task)} className="link-actions">Edit</span></td>
                                 </tr>
                             )
                         })
