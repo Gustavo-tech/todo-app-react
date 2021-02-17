@@ -74,15 +74,15 @@ class TaskForm extends Component {
         })
 
         let updatedTasks = this.state.tasks;
-        filterTasks(updatedTasks);
-
+        
         updatedTasks.forEach(taskInState => {
-            if (taskInState.id ===  task.id) {
-                taskInState.taskName = task.taskName;
-                taskInState.priority = convertPriorityToString(task.priority);
-            }
+          if (taskInState.id ===  task.id) {
+            taskInState.taskName = task.taskName;
+            taskInState.priority = convertPriorityToString(task.priority);
+          }
         })
-
+        
+        filterTasks(updatedTasks);
         this.setState({
           ...this.state,
           tasks: updatedTasks,
