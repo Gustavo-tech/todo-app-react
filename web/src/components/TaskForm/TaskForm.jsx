@@ -17,6 +17,7 @@ import axios from 'axios';
 
 // Utilities
 import { getLastId } from '../../utilities/idFunctions';
+import { filterTasks } from '../../utilities/tasksFilter';
 import { convertPriorityToNumber, convertPriorityToString } from '../../utilities/prioritiesConverter';
 
 class TaskForm extends Component {
@@ -52,8 +53,11 @@ class TaskForm extends Component {
         })
 
         task.priority = convertPriorityToString(task.priority);
+        const updatedTasks = [...this.state.tasks, task];
+        filterTasks(updatedTasks);
+
         this.setState({
-            tasks: [...this.state.tasks, task]
+            tasks: updatedTasks
         })
     }
 
