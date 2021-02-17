@@ -15,6 +15,8 @@ import TaskTable from '../TaskTable/TaskTable';
 // axios
 import axios from 'axios';
 
+// Utilities
+import { getLastId } from '../../utilities/idFunctions';
 
 class TaskForm extends Component {
     state = {
@@ -33,7 +35,7 @@ class TaskForm extends Component {
                 tasks: tasks
             })
 
-            this.setState({id: this.getLastId(tasks) + 1})
+            this.setState({id: getLastId(tasks) + 1})
         })
     }
 
@@ -135,19 +137,6 @@ class TaskForm extends Component {
             })
         }
         
-    }
-
-    getLastId = (tasks) => {
-        console.log(tasks);
-        var maxId = 0;
-
-        tasks.forEach(task => {
-            if (task.id > maxId) {
-                maxId = task.id;
-            }
-        })
-
-        return maxId;
     }
 
     setEditProps = (task) => {
