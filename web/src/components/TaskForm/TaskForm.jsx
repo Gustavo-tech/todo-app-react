@@ -17,6 +17,7 @@ import axios from 'axios';
 
 // Utilities
 import { getLastId } from '../../utilities/idFunctions';
+import { convertPriorityToNumber, convertPriorityToString } from '../../utilities/prioritiesConverter';
 
 class TaskForm extends Component {
     state = {
@@ -30,12 +31,11 @@ class TaskForm extends Component {
     componentDidMount() {
         axios.get('https://localhost:5001/api/todo/todos')
         .then(response => {
-            let tasks = response.data;
             this.setState({
-                tasks: tasks
+                tasks: response.data
             })
 
-            this.setState({id: getLastId(tasks) + 1})
+            this.setState({id: getLastId(response.data) + 1})
         })
     }
 
@@ -51,7 +51,7 @@ class TaskForm extends Component {
             console.log(error);
         })
 
-        task.priority = this.convertPriorityToString(task.priority);
+        task.priority = convertPriorityToString(task.priority);
         this.setState({
             tasks: [...this.state.tasks, task]
         })
@@ -71,7 +71,7 @@ class TaskForm extends Component {
         updatedTasks.forEach(taskInState => {
             if (taskInState.id ===  task.id) {
                 taskInState.taskName = task.taskName;
-                taskInState.priority = this.convertPriorityToString(task.priority);
+                taskInState.priority = convertPriorityToString(task.priority);
             }
         })
 
@@ -118,7 +118,7 @@ class TaskForm extends Component {
         var newTask = {
             id: this.state.id,
             taskName: this.state.taskName,
-            priority: this.convertPriorityToNumber(this.state.priority)
+            priority: convertPriorityToNumber(this.state.priority)
         }
 
         this.setState({
@@ -146,32 +146,6 @@ class TaskForm extends Component {
             priority: task.priority,
             action: 'Edit'
         })
-    }
-
-    convertPriorityToNumber(priority) {
-        switch (priority) {
-            case "High":
-                return 0;
-            case "Medium":
-                return 1;
-            case "Low":
-                return 2;
-            default:
-                return 2;
-        }
-    }
-
-    convertPriorityToString(priority) {
-        switch (priority) {
-            case 0:
-                return "High";
-            case 1:
-                return "Medium";
-            case 2:
-                return "Low";
-            default:
-                return "Low";
-        }
     }
 
     render() {
