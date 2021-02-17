@@ -74,6 +74,7 @@ class TaskForm extends Component {
         })
 
         let updatedTasks = this.state.tasks;
+        filterTasks(updatedTasks);
 
         updatedTasks.forEach(taskInState => {
             if (taskInState.id ===  task.id) {
@@ -83,7 +84,9 @@ class TaskForm extends Component {
         })
 
         this.setState({
-            tasks: updatedTasks
+          ...this.state,
+          tasks: updatedTasks,
+          id: getLastId(updatedTasks) + 1
         })
     }
 
@@ -131,9 +134,10 @@ class TaskForm extends Component {
         }
 
         this.setState({
-            id: this.state.id + 1,
-            taskName: '',
-            priority: 'low'
+          ...this.state,
+          id: getLastId(this.state.tasks),
+          taskName: '',
+          priority: 'low'
         })
 
         if (this.state.action === 'Add') {
