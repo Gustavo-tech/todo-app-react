@@ -1,15 +1,15 @@
 :root {
-    --black:  rgb(43, 41, 41);
-    --purple: #9147ff;
+  --black:  rgb(43, 41, 41);
+  --purple: #9147ff;
 }
 
 body {
-    margin: 0;
+  margin: 0;
 }
 
 div.app {
-    width: 100vw;
-    min-height: 100vh;
-    padding-bottom: 10%;
-    background-color: var(--black);
+  width: 100vw;
+  min-height: 100vh;
+  padding-bottom: 10%;
+  background-color: var(--black);
 }

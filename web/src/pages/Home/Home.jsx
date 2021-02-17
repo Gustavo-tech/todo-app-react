@@ -11,12 +11,12 @@ import TodoImage from '../../assets/to-do.svg';
 import './style.css';
 
 const Home = () =>  {
-    return(
-        <div>
-            <img className="to-do-icon" src={TodoImage} alt="to-do-icon"/>
-            <TaskForm />
-        </div>
-    )
+  return(
+    <div>
+      <img className="to-do-icon" src={TodoImage} alt="to-do-icon"/>
+      <TaskForm />
+    </div>
+  )
 }
 
 export default Home;
