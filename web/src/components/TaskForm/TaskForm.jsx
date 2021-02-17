@@ -33,10 +33,10 @@ class TaskForm extends Component {
         axios.get('https://localhost:5001/api/todo/todos')
         .then(response => {
             this.setState({
-                tasks: response.data
+              ...this.state,
+              tasks: response.data,
+              id : getLastId(response.data) + 1
             })
-
-            this.setState({id: getLastId(response.data) + 1})
         })
     }
 
@@ -53,11 +53,14 @@ class TaskForm extends Component {
         })
 
         task.priority = convertPriorityToString(task.priority);
+        const tasks = [...this.state.tasks];
+        task.id = getLastId(tasks) + 1;
         const updatedTasks = [...this.state.tasks, task];
         filterTasks(updatedTasks);
-
         this.setState({
-            tasks: updatedTasks
+            ...this.state,
+            tasks: updatedTasks,
+            id: task.id + 1
         })
     }
 
@@ -99,7 +102,9 @@ class TaskForm extends Component {
         .then(response => {
             if (response.status === 200) {
                 this.setState({
-                    tasks: tasks
+                    ...this.state,
+                    tasks: tasks,
+                    id: getLastId(tasks) + 1
                 })
             }
         })
@@ -160,7 +165,7 @@ class TaskForm extends Component {
                         <Row>
                         <Col sm={3} lg={1}>
                                 <Form.Group>
-                                    <Form.Control id="task-id" type="number" value={this.state.id} disabled />
+                                    <Form.Control type="number" value={this.state.id} disabled />
                                 </Form.Group>
                             </Col>
                             <Col sm={3} lg={8}>
@@ -174,7 +179,6 @@ class TaskForm extends Component {
                                     onChange={this.onPriorityChange}
                                     as="select"
                                     className="mr-sm-2"
-                                    id="priority"
                                     custom 
                                     required>
                                     <option value="Low">Low</option>
@@ -183,7 +187,7 @@ class TaskForm extends Component {
                                 </Form.Control>
                             </Col>
                             <Col sm={2} lg={1}>
-                                <Button id="submit-button" type="submit">{this.state.action}</Button>
+                                <Button type="submit">{this.state.action}</Button>
                             </Col>
                         </Row>
                     </Form>
